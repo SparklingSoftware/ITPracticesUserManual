@@ -35,6 +35,7 @@
         //  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         //})();
     </script>
+
 </head>
 
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -110,13 +111,23 @@
                     </div>
 
                     <h2>Welcome</h2>
-                    <p>Todo...</p>
+                    <p>Hi!</p>
+                    <p>Welcome to the "IT Practices User Manual". This manual is part of the Global IT Community. </p>
+                    <p>If you are reading a printed version, you can find the latest version online at <a href="http://usermanual.itpractices.org">http://usermanual.itpractices.org</a>. This version was taken from the website at:</p>
+                    <div id="dateDiv" style="font-weight: bold"></div><p></p>
+                    
+                    <p>The tools, processes and other artefacts that make up "How the community works" are all driven by the community itself via a Continuous Improvement process. We are certainly drinking our own champagne!</p>
+                    <p>Suggestions for improvements to "How the community works", this manual or any other improvement for that matter can be submitted in the <a href="http://jira.alm-community.org">Progress Tracking</a> tool. More information about this tool can be found <a href="#ProgressTracking">below</a></p>                    
 
                     <h2>What this manual is for</h2>
-                    <p>Todo...</p>
+                    <p>This manual helps you find your way within the eco system of the IT Practices Community. It explains how the various systems integrate and how to use each.</p>
+                    <p>If you are just getting involved in the community and just want to find out the basics you are able to glans over the topics and get the gist of what the community is about and why it’s absolutely awesome! </p>
+                    <p>The natural progression is to become an active member after a while and to start contributing to certain topics. That would be a good point in time to re-read this manual to understand in more detail what the processes are and what the expectations are in each contribution stage. We have found that this considerably improves the efficiency.</p>
+                    <p>When you have tasted the easy and agility of making process improvements that this PII gives you, you will inevitably want to implement either the practices agreed in the community and/or the PII itself. That is also covert in this manual, even though it is only on a high level. The reason is that adopting these generic practices and transform them into Best Practices for you professional environment takes specific action plans.</p>
+                    <p>Sparkling IT specialises in Implementing Best Practices and a Continuous Improvement Culture. More information can be found on our website.</p>
 
-                    <h2>Why ???</h2>
-                    <p>Todo...</p>
+                    <h2>Intended Audience</h2>
+                    <p>Even though everyone should be able to read this document, the audience targeted in this manual are people who have significant experience in multiple IT disciplines. We will therefor make some assumptions about existing knowledge. The following table articulates these knowledge areas and where to find more information if need be.</p>
 
                 </section>
 
@@ -356,6 +367,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery.scrollTo.js"></script>
+
+
+    
     <script src="assets/js/bootstrap-transition.js"></script>
     <script src="assets/js/bootstrap-alert.js"></script>
     <script src="assets/js/bootstrap-modal.js"></script>
@@ -390,6 +405,40 @@
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(t, s);
         })();
+    </script>
+
+    <script>
+        function showDate() {
+            var now = new Date();
+            var days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+            var months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+            var date = ((now.getDate() < 10) ? "0" : "") + now.getDate();
+            function fourdigits(number) {
+                return (number < 1000) ? number + 1900 : number;
+            }
+
+            //tnow = new Date();
+            //thour = now.getHours();
+            //tmin = now.getMinutes();
+            //tsec = now.getSeconds();
+
+            //if (tmin <= 9) { tmin = "0" + tmin; }
+            //if (tsec <= 9) { tsec = "0" + tsec; }
+            //if (thour < 10) { thour = "0" + thour; }
+
+            // today = days[now.getDay()] + ", " + date + " " + months[now.getMonth()] + ", " + (fourdigits(now.getYear())) + " - " + thour + ":" + tmin + ":" + tsec;
+            today = days[now.getDay()] + ", " + date + " " + months[now.getMonth()] + ", " + (fourdigits(now.getYear()));
+            document.getElementById("dateDiv").innerHTML = today;
+        }
+        showDate();
+        //   setInterval("showDate()", 1000);
+    </script>
+
+    <script>
+        $('a').on('click', function (event) {
+            event.preventDefault();
+            $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 500);
+        });
     </script>
 
 </body>
