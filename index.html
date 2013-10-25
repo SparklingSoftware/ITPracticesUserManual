@@ -18,6 +18,8 @@
     <link href="assets/css/docs.css" rel="stylesheet">
     <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
 
+	<script type="text/javascript" src="assets/js/jspdf.min.js"></script>
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="assets/js/html5shiv.js"></script>
@@ -30,6 +32,7 @@
     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
 
+
     <script type="text/javascript">
         //var _gaq = _gaq || [];
         //_gaq.push(['_setAccount', 'UA-146052-10']);
@@ -40,6 +43,29 @@
         //  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         //})();
     </script>
+
+    <script type="text/javascript">
+        function PDFFromHTML() {
+            var doc = new jsPDF();
+
+            // We'll make our own renderer to skip this editor
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                    return true;
+                }
+            };
+
+            // All units are in the set measurement for the document
+            // This can be changed to "pt" (points), "mm" (Default), "cm", "in"
+            doc.fromHTML($('#render_as_pdf').get(0), 15, 15, {
+                'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+
+            doc.save('IT Practices User Manual.pdf');
+        }
+    </script>
+
 
 </head>
 
@@ -109,7 +135,13 @@
             </div>
             <div class="span9">
 
+            <!--
+            <a href="#" onclick="PDFFromHTML();">
+                <img style="float: right;" alt="" src="assets/img/download_pdf.jpg"  />
+            </a>
+            -->
 
+            <section id="render_as_pdf">            <!-- Start PDF section -->
                 <section id="introduction">
                     <div class="page-header">
                         <h1>1.&thinsp;&thinsp;Introduction</h1>
@@ -371,7 +403,7 @@
                         in the form and submit! Too easy…
                     </p>
                     <p>
-                        Feel free to <a href="http://todo">suggest topics</a>, however we suggest you first attend a meeting to experience the vibe and to get a feel for the level
+                        Feel free to <a href="http://progress.itpractices.org">suggest topics</a>, however we suggest you first attend a meeting to experience the vibe and to get a feel for the level
                         and type of conversations. That will also give you a chance to talk to the community lead in person and to discuss the best approach to become an active
                         member and how to champion the adoption of the IT Practices in your organisation.
                     </p>
@@ -386,10 +418,10 @@
                     </p>
                     <ol>
                         <li>
-                            1. Open up the <a href="http://todo">progress tracking tool</a> in the browser.
+                            1. Open up the <a href="http://progress.itpractices.org">progress tracking tool</a> in the browser.
                         </li>
                         <li>
-                            2. Go to the <a href="http://todo">IT Practices library</a> and in the bottom right corner you will find the option called <a>Improvement Proposal</a>.
+                            2. Go to the <a href="http://www.itpractices.org">IT Practices library</a> and in the bottom right corner you will find the option called <a>Improvement Proposal</a>.
                             This will open a form that allows you to specify some details of the topic.
                         </li>
                         <li>
@@ -418,54 +450,37 @@
                     </p>
                 </section>
 
-
-                <section id="TheProcesses">
-                    <div class="page-header">
-                        <h1>3.&thinsp;&thinsp;The Processes</h1>
-                    </div>
-
-                    <h2>Introduction</h2>
-                    <p>Todo...</p>
-
-                    <h4>Why Process</h4>
-                    <p>Todo...</p>
-
-                    <h4>Initiative Process overview</h4>
-                    <p>Todo...</p>
-
-                    <h2>Raising ideas</h2>
-                    <p>Todo...</p>
-
-                    <h2>Screening</h2>
-                    <p>Todo...</p>
-
-                    <h2>Parked</h2>
-                    <p>Todo...</p>
-
-                    <h2>In Analysis</h2>
-                    <p>Todo...</p>
-
-                    <h2>In Progress</h2>
-                    <p>Todo...</p>
-
-                    <h2>Sign-off</h2>
-                    <p>Todo...</p>
-
-                    <h2>Done</h2>
-                    <p>Todo...</p>
-
-                </section>
-
                 <section id="TheEcoSystem">
                     <div class="page-header">
                         <h1>4.&thinsp;&thinsp;The Eco System</h1>
                     </div>
 
                     <h2>Introduction</h2>
-                    <p>Todo...</p>
+                    <p>As shown in the image below, there are a couple of moving parts in the Process Improvement Infrastructure (PII) that the IT Practices Community uses. We will discuss the interactions between them.</p>
 
-                    <h2>Overview of the system</h2>
-                    <p>Todo...</p>
+                    <ul>
+                        <li>
+                            The Progress Tracking tool
+                        </li>
+                        <li>
+                            Community Collaboration tools
+                        </li>
+                        <li>
+                            The IT Practices Library
+                        </li>
+                    </ul>
+
+                    <img src="assets/img/Ecosystem.png" />
+
+                    <h4>The Progress Tracking tool</h4>
+                    <p>The progress tracking tool is used as the single source of truth for the status of initiatives. This way we prevent doubling up on work, we know who is the captain on the this for a particular initiative, etc.</p>
+                    <p>Agile forms the foundation of the the process definition and we are continuously improving the efficient even furhter. We shouldn't spend time in admin, we should just got on with things!</p>
+
+                    <h4>Collaboration tools</h4>
+                    <p>To support the community in their collaboration efforts, a BuddyPress instance has been created. It allows users to leave messages, share knowledge, etc. All communication is captured so the WHY behind our decissions is captured future reference.</p>
+
+                    <h4>The IT Practices Library</h4>
+                    <p>The wiki that contains the latest agreed IT Practices and also the draft content of "In Progress" initiatives.</p>
 
                     <section id="GettingAccess">
                         <h2>Getting access</h2>
@@ -755,7 +770,6 @@
 
                 </section>
 
-
                 <section id="CollaborationPortal">
                     <div class="page-header">
                         <h1>6.&thinsp;&thinsp;The Collaboration Website</h1>
@@ -793,6 +807,44 @@
                     <p>Todo...</p>
                 </section>
 
+                <section id="TheProcesses">
+                    <div class="page-header">
+                        <h1>3.&thinsp;&thinsp;The Processes</h1>
+                    </div>
+
+                    <h2>Introduction</h2>
+                    <p>Todo...</p>
+
+                    <h4>Why Process</h4>
+                    <p>Todo...</p>
+
+                    <h4>Initiative Process overview</h4>
+                    <p>Todo...</p>
+
+                    <h2>Raising ideas</h2>
+                    <p>Todo...</p>
+
+                    <h2>Screening</h2>
+                    <p>Todo...</p>
+
+                    <h2>Parked</h2>
+                    <p>Todo...</p>
+
+                    <h2>In Analysis</h2>
+                    <p>Todo...</p>
+
+                    <h2>In Progress</h2>
+                    <p>Todo...</p>
+
+                    <h2>Sign-off</h2>
+                    <p>Todo...</p>
+
+                    <h2>Done</h2>
+                    <p>Todo...</p>
+
+                </section>
+
+
                 <section id="WhereToGoFromHere">
                     <div class="page-header">
                         <h1>8.&thinsp;&thinsp;Where to go from here</h1>
@@ -807,6 +859,8 @@
                     <p>Todo...</p>
 
                 </section>
+
+            </section>                      <!-- End PDF section -->
 
             </div>
         </div>
